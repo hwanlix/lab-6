@@ -1,0 +1,23 @@
+<nav class="navigation">
+  <ul class="navigation__list">
+    <% if (menuLinks.length > 0) { %> <% menuLinks.forEach(link => { %>
+    <li class="navigation__item">
+      <a
+        class="navigation__link <%= activeLinkPath === link.path ? 'navigation__link--active' : '' %>"
+        href="<%= link.path %>"
+      >
+        <%= link.label %>
+      </a>
+    </li>
+    <% }); %> <% } %>
+    <li class="navigation__item navigation__cart">
+      Cart
+      <img
+        src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/shopping-cart.svg"
+        alt="Cart"
+        class="navigation__icon"
+      />
+      <span class="navigation__badge"><%= cartCount %></span>
+    </li>
+  </ul>
+</nav>

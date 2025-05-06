@@ -1,0 +1,29 @@
+<div class="card">
+  <img
+    class="card__image"
+    src="https://source.unsplash.com/random/400x200?product1"
+    alt="Product 1"
+  />
+  <h3 class="card__title"><%= product.name %></h3>
+  <p class="card__description"><%= product.description %></p>
+  <p class="card__price"><%= product.price %></p>
+  <a href="/products/<%= product.name %>">Details</a>
+  <button onclick="deleteProduct('<%= product.name %>')">Delete</button>
+</div>
+<script>
+  function deleteProduct(name) {
+    if (!confirm(`Are you sure you want to remove ${name}?`)) {
+      return;
+    }
+
+    fetch(`/products/${name}`, {
+      method: "DELETE",
+    }).then((response) => {
+      if (response.ok) {
+        window.location.reload();
+      } else {
+        alert("Error while removing product.");
+      }
+    });
+  }
+</script>
